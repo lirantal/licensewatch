@@ -1,26 +1,42 @@
-# Module Name
+# Licenses-Fetch
 
 ## What is this?
 
-@TODO
+This module reads the `node_modules` directory of a given
+path and fetches all licenses from reading each module's
+`package.json` and aggregates their counts into an hashmap
+object of licenses.
 
 ## Installation
 
 Bold people use:
 
 ```bash
-yarn add <something>
+yarn add licenses-fetch
 ```
 
 The rest can use the mundane:
 
 ```bash
-npm install --save <something>
+npm install --save licenses-fetch
 ```
 
 ## Usage
 
-@TODO
+```js
+let myLicenses = new LicenseCheck()
+
+const licenses = myLicenses.listFiles()
+  .then((filesList) => {
+    return myLicenses.licenses(filesList)
+  })
+  .then((licenseList) => {
+    return myLicenses.normalize(licenseList)
+  })
+  .then((licensesHash) => {
+    console.log(JSON.stringify(licensesHash))
+  })
+```
 
 ## Tests
 

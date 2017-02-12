@@ -1,7 +1,7 @@
 {
-  "name": "module-name",
+  "name": "licenses-fetch",
   "version": "1.0.0",
-  "description": "",
+  "description": "Recurses a given node_modules directory to fetch all npm package licenses",
   "main": "index.js",
   "scripts": {
     "lint": "standard --fix",
@@ -19,10 +19,10 @@
     "ava": "^0.17.0",
     "commitizen": "^2.9.5",
     "cz-conventional-changelog": "^1.2.0",
+    "docco": "^0.7.0",
     "doxdox": "^2.0.1",
     "nyc": "^10.1.2",
-    "standard": "^8.6.0",
-    "docco": "^0.7.0"
+    "standard": "^8.6.0"
   },
   "nyc": {
     "statements": 90,
@@ -40,5 +40,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "glob": "^7.1.1"
   }
 }
