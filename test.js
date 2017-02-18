@@ -1,69 +1,112 @@
 'use strict'
 
 const test = require('ava')
-const LicenseCheck = require('./index')
+const LicensesFetch = require('./index')
 
 test('initializing the constructor with no parameters uses defaults', t => {
-
-  let myLicenses = new LicenseCheck()
+  let myLicenses = new LicensesFetch()
   t.is(myLicenses.filesPattern, 'node_modules/**/package.json')
 })
 
 test('initializing the constructor with a parameter is set successfully', t => {
-
   const filesPattern = '/tmp/something/node_modules/**/*.js'
-  let myLicenses = new LicenseCheck(filesPattern)
+  let myLicenses = new LicensesFetch(filesPattern)
   t.is(myLicenses.filesPattern, filesPattern)
 })
 
 test('listing files should return an array of all matched files', async t => {
+  t.plan(2)
 
-  let myLicenses = new LicenseCheck()
-  const licenseFiles = await myLicenses.listFiles()
+  let myLicenses = new LicensesFetch('node_modules/**/package.json')
 
-  t.true(Array.isArray(licenseFiles))
+  myLicenses.fetch()
+
+  await new Promise((resolve, reject) => {
+    myLicenses.on('files', (licenseFiles) => {
+      t.true(Array.isArray(licenseFiles))
+      t.true(licenseFiles.length > 0)
+
+      resolve(licenseFiles)
+    })
+  })
 })
 
 test('listing files fail if the filespattern is not a string', async t => {
+  t.plan(1)
 
-  let myLicenses = new LicenseCheck(['a'])
-  const licenseFiles = await myLicenses.listFiles()
+  let myLicenses = new LicensesFetch(['somepattern'])
 
-  t.false(licenseFiles)
+  myLicenses.fetch()
+
+  await new Promise((resolve, reject) => {
+    myLicenses.on('error', (error) => {
+      t.is(error.message.indexOf('glob pattern string required') !== false, true)
+      resolve(error)
+    })
+  })
 })
 
-test('listing files fail if the filespattern is not a string', async t => {
+test('listing files fail if the filespattern is empty', t => {
+  t.plan(2)
 
-  let myLicenses = new LicenseCheck('')
-  const licenseFiles = await myLicenses.listFiles()
+  let myLicenses = new LicensesFetch('')
 
-  t.false(licenseFiles)
+  const filesObj = myLicenses.fetch()
+  t.true(typeof filesObj === 'object')
+  t.true(Object.keys(filesObj).length === 0)
+})
+
+test('normalize function fails if not given an array', t => {
+  t.plan(1)
+
+  let myLicenses = new LicensesFetch('')
+
+  const filesObj = myLicenses.normalize('')
+  t.false(filesObj)
+})
+
+test('getting a single license event is successful', async t => {
+  t.plan(1)
+
+  let myLicenses = new LicensesFetch('node_modules/**/package.json')
+
+  myLicenses.fetch()
+
+  await new Promise((resolve, reject) => {
+    myLicenses.once('license', (license) => {
+      t.true(typeof license === 'string')
+      resolve(license)
+    })
+  })
 })
 
 test('getting all licenses as a bulk array is successful', async t => {
+  t.plan(1)
 
-  let myLicenses = new LicenseCheck()
-  const licenses = await myLicenses.listFiles().then((filesList) => myLicenses.licenses(filesList))
+  let myLicenses = new LicensesFetch('node_modules/**/package.json')
 
-  t.true(Array.isArray(licenses))
+  myLicenses.fetch()
+
+  await new Promise((resolve, reject) => {
+    myLicenses.on('licenses', (licenses) => {
+      t.true(Array.isArray(licenses))
+      resolve(licenses)
+    })
+  })
 })
 
 test('getting an aggregated list of licenses as a hashmap object', async t => {
   t.plan(2)
 
-  let myLicenses = new LicenseCheck()
-  const aggregatedLicenses = await myLicenses.listFiles()
-    .then((filesList) => myLicenses.licenses(filesList))
-    .then((licenseList) => myLicenses.normalize(licenseList))
+  let myLicenses = new LicensesFetch('node_modules/**/package.json')
 
-  t.true(Object.keys(aggregatedLicenses).length !== 0)
-  t.true(typeof aggregatedLicenses === 'object')
-})
+  myLicenses.fetch()
 
-test('fail if licenses passed to normalize is not an array', async t => {
-
-  let myLicenses = new LicenseCheck()
-  const normalizedLicenses = await myLicenses.normalize('')
-
-  t.false(normalizedLicenses)
+  await new Promise((resolve, reject) => {
+    myLicenses.on('licensesSummary', (licenses) => {
+      t.true(typeof licenses === 'object')
+      t.true(Object.keys(licenses).length > 0)
+      resolve(licenses)
+    })
+  })
 })

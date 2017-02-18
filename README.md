@@ -4,8 +4,14 @@
 
 This module reads the `node_modules` directory of a given
 path and fetches all licenses from reading each module's
-`package.json` and aggregates their counts into an hashmap
+`package.json` and aggregates their counts into a hashmap
 object of licenses.
+
+## Implementation
+
+Current implementation is with an Observable pattern so consumers need to add listeners to events the module emits.
+
+Previous version of this module includes a [Promises-based implementation](https://github.com/lirantal/licenses-fetch/releases/tag/v1.0.0-promises) and complete code coverage.
 
 ## Installation
 
@@ -24,18 +30,32 @@ npm install --save licenses-fetch
 ## Usage
 
 ```js
-let myLicenses = new LicenseCheck()
 
-const licenses = myLicenses.listFiles()
-  .then((filesList) => {
-    return myLicenses.licenses(filesList)
-  })
-  .then((licenseList) => {
-    return myLicenses.normalize(licenseList)
-  })
-  .then((licensesHash) => {
-    console.log(JSON.stringify(licensesHash))
-  })
+const licenses = new LicensesFetch('node_modules/**/package.json')
+
+licenses.fetch()
+let licensesCount = 0
+
+licenses.on('files', (files) => {
+  console.log('files processed' + ' - ' + files.length + ' - ' + files[0])
+})
+
+licenses.on('license', () => {
+  licensesCount++
+})
+
+licenses.on('licenses', (licenses) => {
+  console.log(licenses.length)
+})
+
+licenses.on('licensesNormalized', (licenses) => {
+  console.log(licenses)
+})
+
+licenses.on('error', (error) => {
+  console.log('errors mate, from down under')
+  console.log(error)
+})
 ```
 
 ## Tests
@@ -43,19 +63,19 @@ const licenses = myLicenses.listFiles()
 Project tests:
 
 ```bash
-npm run test
+yarn run test
 ```
 
 Project linting:
 
 ```bash
-npm run lint
+yarn run lint
 ```
 
 ## Coverage
 
 ```bash
-npm run test:coverage
+yarn run test:coverage
 ```
 
 ## Commit

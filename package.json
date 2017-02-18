@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard --fix",
-    "test": "ava",
-    "test:watch": "ava --watch",
-    "test:coverage": "nyc ava",
+    "test": "node --harmony node_modules/.bin/ava",
+    "test:watch": "node --harmony node_modules/.bin/ava --watch",
+    "test:coverage": "nyc node --harmony node_modules/.bin/ava",
     "commit": "git-cz",
     "docs": "npm run docs:code && npm run docs:api",
     "docs:api": "doxdox *.js --layout bootstrap --output docs/index.html",
