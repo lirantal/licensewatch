@@ -1,4 +1,4 @@
-# Licenses-Fetch
+# LicenseWatch
 
 ## What is this?
 
@@ -11,27 +11,19 @@ object of licenses.
 
 Current implementation is with an Observable pattern so consumers need to add listeners to events the module emits.
 
-Previous version of this module includes a [Promises-based implementation](https://github.com/lirantal/licenses-fetch/releases/tag/v1.0.0-promises) and complete code coverage.
+Previous version of this module includes a [Promises-based implementation](https://github.com/lirantal/licensewatch/releases/tag/v1.0.0-promises) and complete code coverage.
 
 ## Installation
 
-Bold people use:
-
 ```bash
-yarn add licenses-fetch
-```
-
-The rest can use the mundane:
-
-```bash
-npm install --save licenses-fetch
+yarn add licensewatch
 ```
 
 ## Usage
 
 ```js
-
-const licenses = new LicensesFetch('node_modules/**/package.json')
+const LicenseWatch = require('licensewatch')
+const licenses = new LicenseWatch('node_modules/**/package.json')
 
 licenses.fetch()
 let licensesCount = 0
