@@ -1,5 +1,5 @@
 {
-  "name": "licenses-fetch",
+  "name": "licensewatch",
   "version": "1.0.0",
   "description": "Recurses a given node_modules directory to fetch all npm package licenses",
   "main": "index.js",
