@@ -134,4 +134,4 @@ class LicenseWatch extends EventEmitter {
 
 }
 
-module.exports = LicensesFetch
+module.exports = LicenseWatch
