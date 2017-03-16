@@ -11,7 +11,7 @@ const Promise = require('bluebird')
  * @param {string} filesPattern glob syntax for matching package.json files, for example: node_modules/ ** /package.json
  * @constructor
  */
-class LicensesFetch extends EventEmitter {
+class LicenseWatch extends EventEmitter {
 
   /**
    *
