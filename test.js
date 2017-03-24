@@ -103,7 +103,9 @@ test('getting an aggregated list of licenses as a hashmap object', async t => {
   myLicenses.fetch()
 
   await new Promise((resolve, reject) => {
-    myLicenses.on('licensesSummary', (licenses) => {
+    myLicenses.on('licensesSummary', (data) => {
+      const licenses = data.licenses
+
       t.true(typeof licenses === 'object')
       t.true(Object.keys(licenses).length > 0)
       resolve(licenses)

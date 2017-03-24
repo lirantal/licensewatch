@@ -60,7 +60,8 @@ class LicenseWatch extends EventEmitter {
     // normalizing the the mutli-entry array of licenses into an aggregated
     // sum per license line from package.json
     this.licensesSummary = this.normalize(this.licenses)
-    this.emit('licensesSummary', this.licensesSummary)
+    const maxLicenses = this.max(this.licensesSummary)
+    this.emit('licensesSummary', {licenses: this.licensesSummary, maxLicenses})
 
     return this.licensesSummary
   }
@@ -130,6 +131,19 @@ class LicenseWatch extends EventEmitter {
     }, {})
 
     return normalizedLicenses
+  }
+
+  max (licenses = {}) {
+    if (typeof licenses !== 'object' || licenses === null) {
+      return false
+    }
+
+    let maxLicenseCount = 0
+    for (let license in licenses) {
+      maxLicenseCount < licenses[license] ? maxLicenseCount = licenses[license] : ''
+    }
+
+    return maxLicenseCount
   }
 
 }
