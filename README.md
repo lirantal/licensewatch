@@ -40,7 +40,7 @@ licenses.on('licenses', (licenses) => {
   console.log(licenses.length)
 })
 
-licenses.on('licensesNormalized', (licenses) => {
+licenses.on('licensesSummary', (licenses) => {
   console.log(licenses)
 })
 
