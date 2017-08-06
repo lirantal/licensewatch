@@ -1,8 +1,11 @@
 {
   "name": "licensewatch",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Recurses a given node_modules directory to fetch all npm package licenses",
   "main": "index.js",
+  "engines": {
+    "node": ">=7.6"
+  },
   "scripts": {
     "lint": "standard --fix",
     "test": "node --harmony node_modules/.bin/ava",
