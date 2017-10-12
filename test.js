@@ -1,7 +1,7 @@
 'use strict'
 
 const test = require('ava')
-const LicensesFetch = require('./index')
+const LicensesFetch = require('./dist/index')
 
 test('initializing the constructor with no parameters uses defaults', t => {
   let myLicenses = new LicensesFetch()
