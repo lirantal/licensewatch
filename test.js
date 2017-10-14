@@ -46,12 +46,12 @@ test('listing files fail if the filespattern is not a string', async t => {
   })
 })
 
-test('listing files fail if the filespattern is empty', t => {
+test('listing files fail if the filespattern is empty', async t => {
   t.plan(2)
 
   let myLicenses = new LicensesFetch('')
 
-  const filesObj = myLicenses.fetch()
+  const filesObj = await myLicenses.fetch()
   t.true(typeof filesObj === 'object')
   t.true(Object.keys(filesObj).length === 0)
 })
