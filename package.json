@@ -7,10 +7,11 @@
     "node": ">=7.6"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "lint": "standard --fix",
-    "test": "node --harmony node_modules/.bin/ava",
-    "test:watch": "node --harmony node_modules/.bin/ava --watch",
-    "test:coverage": "nyc node --harmony node_modules/.bin/ava",
+    "test": "npm run build; node --harmony node_modules/.bin/ava",
+    "test:watch": "npm run build; node --harmony node_modules/.bin/ava --watch",
+    "test:coverage": "npm run build; nyc node --harmony node_modules/.bin/ava",
     "commit": "git-cz",
     "docs": "npm run docs:code && npm run docs:api",
     "docs:api": "doxdox *.js --layout bootstrap --output docs/index.html",
