@@ -1,6 +1,6 @@
 'use strict'
 
-require("babel-polyfill");
+require("babel-polyfill")
 
 const EventEmitter = require('events')
 const fs = require('fs')
