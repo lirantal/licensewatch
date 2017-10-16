@@ -2,7 +2,7 @@
   "name": "licensewatch",
   "version": "1.2.1",
   "description": "Recurses a given node_modules directory to fetch all npm package licenses",
-  "main": "index.js",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=7.6"
   },
