@@ -56,7 +56,7 @@ var LicenseWatch = function (_EventEmitter) {
   _createClass(LicenseWatch, [{
     key: 'fetch',
     value: function () {
-      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var globPromise, maxLicense;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
