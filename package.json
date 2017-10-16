@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.7",
-    "glob": "^7.1.1"
+    "glob": "^7.1.1",
+    "licensewatch": "^1.2.1"
   }
 }
