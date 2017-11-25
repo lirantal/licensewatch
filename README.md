@@ -1,5 +1,7 @@
 # LicenseWatch
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lirantal/licensewatch.svg)](https://greenkeeper.io/)
+
 ## What is this?
 
 This module reads the `node_modules` directory of a given
