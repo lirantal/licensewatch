@@ -18,7 +18,7 @@
   "author": "Liran Tal",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^1.1.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.0.20",
     "babel-polyfill": "^6.0.16",
