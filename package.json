@@ -28,7 +28,7 @@
     "docco": "^0.8.0",
     "doxdox": "^2.0.1",
     "nyc": "^12.0.1",
-    "standard": "^12.0.0"
+    "standard": "^13.0.1"
   },
   "nyc": {
     "statements": 90,
