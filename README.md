@@ -1,6 +1,6 @@
 # LicenseWatch
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/lirantal/licensewatch.svg)](https://greenkeeper.io/)
+[![licensewatch](https://snyk.io/advisor/npm-package/licensewatch/badge.svg)](https://snyk.io/advisor/npm-package/licensewatch)
 
 [![Security Responsible Disclosure](https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg)](https://github.com/nodejs/security-wg/blob/master/processes/responsible_disclosure_template.md)
 
