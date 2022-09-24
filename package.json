@@ -1,6 +1,6 @@
 {
   "name": "licensewatch",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Recurses a given node_modules directory to fetch all npm package licenses",
   "main": "dist/index.js",
   "scripts": {
