@@ -31,6 +31,23 @@ test('listing files should return an array of all matched files', async t => {
   })
 })
 
+test('listing files should not break on malformed json', async t => {
+  t.plan(2)
+
+  let myLicenses = new LicensesFetch('fixtures-malformed/**/package.json')
+
+  myLicenses.fetch()
+
+  await new Promise((resolve, reject) => {
+    myLicenses.on('files', (licenseFiles) => {
+      t.true(Array.isArray(licenseFiles))
+      t.true(licenseFiles.length > 0)
+
+      resolve(licenseFiles)
+    })
+  })
+})
+
 test('listing files fail if the filespattern is not a string', async t => {
   t.plan(1)
 

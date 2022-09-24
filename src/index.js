@@ -86,20 +86,24 @@ class LicenseWatch extends EventEmitter {
             reject(error)
           }
 
-          let packageFile = JSON.parse(data)
-          let packageLicense = packageFile.license
+          try {
+            let packageFile = JSON.parse(data)
+            let packageLicense = packageFile.license
 
-          if (!!packageLicense === false) {
-            packageLicense = 'undefined'
+            if (!!packageLicense === false) {
+              packageLicense = 'undefined'
+            }
+
+            if (typeof packageLicense === 'object') {
+              packageLicense = packageLicense.type
+            }
+
+            this.licenses.push(packageLicense)
+            this.emit('license', packageLicense)
+            resolve(packageLicense)
+          } catch (error) {
+            resolve()
           }
-
-          if (typeof packageLicense === 'object') {
-            packageLicense = packageLicense.type
-          }
-
-          this.licenses.push(packageLicense)
-          this.emit('license', packageLicense)
-          resolve(packageLicense)
         })
       })
 

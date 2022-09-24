@@ -1,0 +1,37 @@
+{
+    "name": "licensewatch",
+    "version": "2.0.0",
+    "description": "Recurses a given node_modules directory to fetch all npm package licenses",
+    "main": "dist/index.js",
+    "scripts": {
+      "prepublish": "npm run build",
+      "lint": "standard --fix",
+      "test": "npm run build && node --harmony node_modules/.bin/ava",
+      "test:watch": "npm run build && node --harmony node_modules/.bin/ava --watch",
+      "test:coverage": "npm run build && nyc node --harmony node_modules/.bin/ava",
+      "commit": "git-cz",
+      "docs": "npm run docs:code && npm run docs:api",
+      "docs:api": "doxdox *.js --layout bootstrap --output docs/index.html",
+      "docs:code": "docco *.js --output docs/code",
+      "build": "babel src -d dist"
+    },
+    "author": "Liran Tal",
+    "license": "MIT",
+    "devDependencies": {
+      "ava": "^0.25.0",
+      "babel-cli": "^6.26.0",
+      "babel-core": "^6.0.20",
+      "babel-polyfill": "^6.0.16",
+      "babel-preset-env": "^1.6.0",
+      "commitizen": "^3.0.0",
+      "cz-conventional-changelog": "^2.1.0",
+      "docco": "^0.8.0",
+      "doxdox": "^2.0.1",
+      "nyc": "^12.0.1",
+      "standard": "^12.0.0"
+    },
+    "nyc": {
+      "statements": 90,
+      "branches": 80,
+      "functions": 90,
+      "lines
