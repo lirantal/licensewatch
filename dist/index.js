@@ -162,20 +162,24 @@ var LicenseWatch = function (_EventEmitter) {
               reject(error);
             }
 
-            var packageFile = JSON.parse(data);
-            var packageLicense = packageFile.license;
+            try {
+              var packageFile = JSON.parse(data);
+              var packageLicense = packageFile.license;
 
-            if (!!packageLicense === false) {
-              packageLicense = 'undefined';
+              if (!!packageLicense === false) {
+                packageLicense = 'undefined';
+              }
+
+              if (typeof packageLicense === 'object') {
+                packageLicense = packageLicense.type;
+              }
+
+              _this2.licenses.push(packageLicense);
+              _this2.emit('license', packageLicense);
+              resolve(packageLicense);
+            } catch (error) {
+              resolve();
             }
-
-            if (typeof packageLicense === 'object') {
-              packageLicense = packageLicense.type;
-            }
-
-            _this2.licenses.push(packageLicense);
-            _this2.emit('license', packageLicense);
-            resolve(packageLicense);
           });
         });
 
