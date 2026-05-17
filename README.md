@@ -83,3 +83,7 @@ messages so you should follow it as so:
 git add .           # add files to staging
 npm run commit      # use the wizard for the commit message
 ```
+
+## Contributing
+
+Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.
