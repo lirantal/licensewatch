@@ -1,4 +1,8 @@
 {
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
   "name": "licensewatch",
   "version": "2.0.1",
   "description": "Recurses a given node_modules directory to fetch all npm package licenses",
