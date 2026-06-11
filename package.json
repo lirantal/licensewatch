@@ -1,8 +1,4 @@
 {
-  "publishConfig": {
-    "provenance": true,
-    "access": "public"
-  },
   "name": "licensewatch",
   "version": "2.0.1",
   "description": "Recurses a given node_modules directory to fetch all npm package licenses",
@@ -55,5 +51,9 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "glob": "^7.1.1"
+  },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
   }
 }
