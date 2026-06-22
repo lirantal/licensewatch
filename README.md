@@ -83,6 +83,10 @@ git add .           # add files to staging
 npm run commit      # use the wizard for the commit message
 ```
 
+## Documentation
+
+- [Project documentation](./docs/README.md) - development, testing, architecture, and conventions.
+
 ## Contributing
 
 Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.
