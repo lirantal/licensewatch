@@ -17,6 +17,8 @@ jobs:
           node-version: 24.x
       - name: Set up pinned npm
         run: bash "${{ github.workspace }}/.github/scripts/setup-npm.sh"
+      - name: Set up pinned Yarn
+        run: bash "${{ github.workspace }}/.github/scripts/setup-yarn.sh"
       - run: yarn install --frozen-lockfile
       - run: yarn run build
       - run: yarn run test
@@ -32,6 +34,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Set up pinned npm
         run: bash "${{ github.workspace }}/.github/scripts/setup-npm.sh"
+      - name: Set up pinned Yarn
+        run: bash "${{ github.workspace }}/.github/scripts/setup-yarn.sh"
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
