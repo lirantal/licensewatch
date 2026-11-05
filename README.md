@@ -19,7 +19,7 @@ Previous version of this module includes a [Promises-based implementation](https
 ## Installation
 
 ```bash
-yarn add licensewatch
+npm install licensewatch
 ```
 
 ## Usage
@@ -53,24 +53,32 @@ licenses.on('error', (error) => {
 })
 ```
 
+## Development
+
+Use Node.js 24 or newer and npm 11.17.0 (pinned in `package.json`).
+Run `npm ci` to install the locked dependencies, then `npm run build`.
+Dependency lifecycle scripts are disabled by `.npmrc`; build commands must
+be run explicitly. Use npm for dependency changes and commit `package-lock.json`.
+See [RELEASE.md](./RELEASE.md) for versioning and publishing.
+
 ## Tests
 
 Project tests:
 
 ```bash
-yarn run test
+npm run test
 ```
 
 Project linting:
 
 ```bash
-yarn run lint
+npm run lint
 ```
 
 ## Coverage
 
 ```bash
-yarn run test:coverage
+npm run test:coverage
 ```
 
 ## Commit
