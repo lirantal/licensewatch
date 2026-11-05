@@ -31,7 +31,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "docco": "^0.8.0",
     "doxdox": "^2.0.1",
-    "nyc": "^12.0.1",
+    "nyc": "^18.0.0",
     "standard": "^12.0.0",
     "@changesets/cli": "^2.31.0",
     "@changesets/changelog-github": "^0.6.0"
