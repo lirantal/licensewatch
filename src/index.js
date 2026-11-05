@@ -1,6 +1,6 @@
 'use strict'
 
-require("babel-polyfill")
+require('babel-polyfill')
 
 const EventEmitter = require('events')
 const fs = require('fs')
@@ -14,7 +14,6 @@ const Promise = require('bluebird')
  * @constructor
  */
 class LicenseWatch extends EventEmitter {
-
   /**
    *
    * @param {string} filesPattern provide glob path pattern for accessing package.json files
@@ -63,7 +62,7 @@ class LicenseWatch extends EventEmitter {
     // sum per license line from package.json
     this.licensesSummary = this.normalize(this.licenses)
     const maxLicense = this.max(this.licensesSummary)
-    this.emit('licensesSummary', {licenses: this.licensesSummary, maxLicense})
+    this.emit('licensesSummary', { licenses: this.licensesSummary, maxLicense })
 
     return this.licensesSummary
   }
@@ -80,7 +79,7 @@ class LicenseWatch extends EventEmitter {
 
     this.files.forEach((item) => {
       let licensePromise = new Promise((resolve, reject) => {
-        fs.readFile(item, {encoding: 'utf-8'}, (error, data) => {
+        fs.readFile(item, { encoding: 'utf-8' }, (error, data) => {
           if (error) {
             this.emit('error', error)
             reject(error)
@@ -158,7 +157,6 @@ class LicenseWatch extends EventEmitter {
 
     return maxLicense
   }
-
 }
 
 module.exports = LicenseWatch
